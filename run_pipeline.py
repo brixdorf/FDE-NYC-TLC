@@ -5,6 +5,7 @@ Usage:
     python run_pipeline.py --month 2026-06
     python run_pipeline.py --from 2026-05 --to 2026-07
     python run_pipeline.py --month 2026-06 --chaos api_down
+    python run_pipeline.py --report-only           # rebuild docs/evidence.md from outputs/
 
 Exit codes: 0 success (including degraded runs), 1 unexpected error,
 2 validation failed, 3 retrieval failed, 4 bad arguments.
@@ -56,9 +57,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--force-download", action="store_true", help="ignore the verified local copy")
     parser.add_argument("--chaos", choices=CHAOS_SCENARIOS, help="inject one failure to demonstrate handling")
     parser.add_argument("--no-report", action="store_true", help="skip regenerating docs/evidence.md")
+    parser.add_argument("--report-only", action="store_true", help="only rebuild docs/evidence.md from outputs/")
     args = parser.parse_args(argv)
 
     cfg = load_config()
+    if args.report_only:
+        report.build_evidence(cfg, get_logger(new_run_id(), cfg.path("logs"), "report"))
+        return EXIT_OK
     for value in (args.month, args.from_month, args.to_month):
         if value and not MONTH.match(value):
             parser.print_usage(sys.stderr)

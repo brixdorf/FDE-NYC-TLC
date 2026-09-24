@@ -176,7 +176,9 @@ def run_month(month: str, cfg: Config, run_id: str, logger: logging.Logger, chao
         logger.warning("Publish | month=%s missing trips %s could move the citywide long-wait rate from %.4f to "
                        "between %.4f and %.4f (estimate %s)", month, impact["missing_trips"], impact["reported"],
                        impact["lower_bound"], impact["upper_bound"], impact.get("estimate"))
-    final_dir = cfg.path("outputs") / f"month={month}"
+    # Chaos runs are demonstrations: they must never overwrite a real month's outputs
+    out_root = cfg.path("outputs") / "chaos" / chaos if chaos else cfg.path("outputs")
+    final_dir = out_root / f"month={month}"
     staging = final_dir.with_name(final_dir.name + f".staging-{run_id}")
     staging.mkdir(parents=True, exist_ok=True)
     for name, df in gold.items():
@@ -202,7 +204,8 @@ def run_month(month: str, cfg: Config, run_id: str, logger: logging.Logger, chao
                      "median_wait_min": float(citywide.median_wait_min),
                      "p90_wait_min": float(citywide.p90_wait_min)},
         "silver_path": str(silver_path.relative_to(cfg.root)),
-        "outputs": {name: sha256_file(staging / name) for name in sorted(gold)},
+        # checksums of everything except this manifest: a rerun of the same inputs must reproduce them
+        "outputs": {f.name: sha256_file(f) for f in sorted(staging.iterdir()) if f.name != "run_manifest.json"},
     }
     write_json(manifest, staging / "run_manifest.json")
     _swap_in(staging, final_dir)
