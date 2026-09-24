@@ -23,6 +23,7 @@ from .validate import FAIL, PASS, UNKNOWN, WARN, ValidationError
 
 CHAOS_SCENARIOS = ("missing_column", "truncated_download", "api_down", "unpublished_month")
 UNREACHABLE_API = "http://127.0.0.1:9/resource"  # closed local port: connection refused
+CHAOS_TRUNCATE_BYTES = 64 * 1024                  # the simulated connection drop happens after 64 KiB
 
 
 def month_bounds(month: str) -> tuple[str, str]:
@@ -108,7 +109,7 @@ def run_month(month: str, cfg: Config, run_id: str, logger: logging.Logger, chao
     file_month = f"{date.today():%Y-%m}" if chaos == "unpublished_month" else month
     trip_manifest = extract.fetch_trip_file(
         file_month, cfg, client, logger, force=force_download,
-        truncate_after=cfg["http"]["download_chunk_bytes"] if chaos == "truncated_download" else None)
+        truncate_after=CHAOS_TRUNCATE_BYTES if chaos == "truncated_download" else None)
     stage_seconds["extract"] = round(time.monotonic() - t, 1)
 
     # 2. VALIDATE --------------------------------------------------------------

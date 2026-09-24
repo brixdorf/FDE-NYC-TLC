@@ -120,11 +120,13 @@ def _stream_to_file(client: HttpClient, url: str, destination: Path, expected_by
         written = 0
         with client.request("GET", url, stream=True, label=label, headers=IDENTITY) as response, open(tmp, "wb") as f:
             for block in response.iter_content(chunk_size=chunk):
+                if truncate_after is not None:
+                    block = block[:max(0, truncate_after - written)]  # chaos: connection drops mid-file
                 f.write(block)
                 digest.update(block)
                 written += len(block)
                 if truncate_after is not None and written >= truncate_after:
-                    break  # chaos: simulate a connection dropped mid-file
+                    break
         if written == expected_bytes:
             tmp.replace(destination)
             return written, digest.hexdigest()
