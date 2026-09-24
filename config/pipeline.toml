@@ -1,0 +1,57 @@
+# Pipeline configuration. Code reads every tunable value from here, so a
+# different environment (or a stakeholder changing a threshold) never needs
+# a code change. Environment variables of the form TLC_<SECTION>__<KEY>
+# override single values, e.g. TLC_HTTP__MAX_RETRIES=6.
+
+[project]
+dataset = "fhvhv"
+industry_label = "FHV - High Volume"   # label used by TLC in the published aggregates
+publication_lag_months = 2             # TLC publishes trip files roughly two months after month end
+
+[paths]
+raw = "data/raw"
+silver = "data/silver"
+outputs = "outputs"
+logs = "logs"
+docs = "docs"
+
+[sources]
+trip_url_template = "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_{month}.parquet"
+zone_lookup_url = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+socrata_base_url = "https://data.cityofnewyork.us/resource"
+zone_counts_dataset = "c5iv-bn4s"      # Pickups and Drop-offs by Taxi Zone and Industry
+base_aggregate_dataset = "2v9c-2k7f"   # FHV Base Aggregate Report
+
+[http]
+timeout_seconds = 60
+max_retries = 4
+backoff_base_seconds = 1.0
+download_chunk_bytes = 1048576
+socrata_page_size = 1000
+
+[kpi]
+long_wait_minutes = 10                 # ASSUMPTION: "long wait" threshold, owner to confirm
+sensitivity_minutes = [5, 10, 15]
+
+[validation]
+# Every threshold below is a business assumption, documented in docs/validation_rules.md
+max_wait_minutes = 60                  # request to pickup above this is held out of the wait KPI
+trip_time_tolerance_seconds = 60       # allowed gap between trip_time and dropoff minus pickup
+max_trip_hours = 4
+max_speed_mph = 70
+daily_dip_ratio = 0.75                 # licensee-day below this share of its weekday median is flagged
+min_valid_share_pass = 0.97            # share of trips usable for the KPI needed for PASS
+min_valid_share_warn = 0.90
+
+[reconciliation]
+total_delta_pass_pct = 0.5
+total_delta_warn_pct = 2.0
+zone_delta_warn_pct = 5.0              # zones with at least min_zone_trips and a larger gap are listed
+min_zone_trips = 1000
+
+[licenses]
+# From the TLC HVFHV data dictionary (March 18, 2025)
+HV0002 = "Juno"
+HV0003 = "Uber"
+HV0004 = "Via"
+HV0005 = "Lyft"
