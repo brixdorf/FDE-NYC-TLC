@@ -1,0 +1,40 @@
+{
+  "month": "2026-05",
+  "checks": [
+    {
+      "check": "C01.pickups_vs_tlc_zone_report",
+      "status": "PASS",
+      "detail": "file 22125744 vs TLC published 22124561 pickups: delta +1183 (+0.005%); 0 zones differ by more than 5.0%",
+      "file_trips": 22125744,
+      "tlc_published_trips": 22124561,
+      "delta": 1183,
+      "delta_pct": 0.0053,
+      "zones_compared": 262,
+      "zones_over_threshold": 0,
+      "api_rows": 260
+    },
+    {
+      "check": "C02.trips_vs_tlc_base_report",
+      "status": "PASS",
+      "detail": "LYFT +0 (+0.000%); UBER +0 (+0.000%)",
+      "per_licensee": [
+        {
+          "licensee": "LYFT",
+          "file_trips": 6770928,
+          "tlc_published_trips": 6770928,
+          "delta": 0,
+          "delta_pct": 0.0,
+          "status": "PASS"
+        },
+        {
+          "licensee": "UBER",
+          "file_trips": 15354816,
+          "tlc_published_trips": 15354816,
+          "delta": 0,
+          "delta_pct": 0.0,
+          "status": "PASS"
+        }
+      ]
+    }
+  ]
+}

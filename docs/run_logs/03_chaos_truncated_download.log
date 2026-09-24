@@ -1,0 +1,9 @@
+2026-09-25 02:44:12 | INFO    | run=20260924T211412Z-565284 | Pipeline start | month=2026-06 chaos=truncated_download config=712d286d680d
+2026-09-25 02:44:12 | INFO    | run=20260924T211412Z-565284 | Stage extract | month=2026-06
+2026-09-25 02:44:13 | INFO    | run=20260924T211412Z-565284 | Reusing cached file | source=taxi_zone_lookup bytes=12331 sha256=1a99e1050922
+2026-09-25 02:44:13 | INFO    | run=20260924T211412Z-565284 | Downloading | source=tlc_trip_file:2026-06 bytes=506800012
+2026-09-25 02:44:14 | WARNING | run=20260924T211412Z-565284 | Truncated download | source=tlc_trip_file:2026-06 received=65536 expected=506800012 attempt=1/4
+2026-09-25 02:44:17 | WARNING | run=20260924T211412Z-565284 | Truncated download | source=tlc_trip_file:2026-06 received=65536 expected=506800012 attempt=2/4
+2026-09-25 02:44:19 | WARNING | run=20260924T211412Z-565284 | Truncated download | source=tlc_trip_file:2026-06 received=65536 expected=506800012 attempt=3/4
+2026-09-25 02:44:24 | WARNING | run=20260924T211412Z-565284 | Truncated download | source=tlc_trip_file:2026-06 received=65536 expected=506800012 attempt=4/4
+2026-09-25 02:44:24 | ERROR   | run=20260924T211412Z-565284 | PIPELINE FAILED | month=2026-06 stage=extract reason=tlc_trip_file:2026-06: download incomplete after 4 attempts; no file kept (expected 506800012 bytes) | no processed output written; previous outputs for this month left untouched

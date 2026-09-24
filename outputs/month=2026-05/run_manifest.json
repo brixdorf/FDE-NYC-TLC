@@ -1,0 +1,103 @@
+{
+  "run_id": "20260924T211259Z-085178",
+  "month": "2026-05",
+  "started_at": "2026-09-24T21:12:59+00:00",
+  "finished_at": "2026-09-24T21:13:21+00:00",
+  "duration_seconds": 21.8,
+  "stage_seconds": {
+    "extract": 0.6,
+    "validate": 7.2,
+    "model": 5.0,
+    "reconcile": 2.9,
+    "metrics": 6.1
+  },
+  "git_commit": "1a4c121",
+  "config_fingerprint": "712d286d680d",
+  "chaos": null,
+  "publish_decision": "PUBLISH",
+  "decision_reasons": [],
+  "degraded": false,
+  "kpi_impact_of_missing_trips": null,
+  "validation_status": "WARN",
+  "inputs": {
+    "trip_file": {
+      "source": "tlc_trip_file:2026-05",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2026-05.parquet",
+      "file": "fhvhv_tripdata_2026-05.parquet",
+      "action": "cached",
+      "retrieved_at": "2026-09-24T20:45:31+00:00",
+      "remote_content_length": 537576484,
+      "bytes_on_disk": 537576484,
+      "bytes_match": true,
+      "sha256": "e2b633a5be2280da537b4138f5bcb198eb04a6d3c2ef6bf7bd647f5b2c995287",
+      "etag": "e4f4ba2ae1c4bdeb5456e456dd2efda8-32",
+      "remote_last_modified": "Fri, 26 Jun 2026 21:07:20 GMT",
+      "parquet_footer_rows": 22125744,
+      "parquet_row_groups": 22,
+      "parquet_columns": [
+        "hvfhs_license_num",
+        "dispatching_base_num",
+        "originating_base_num",
+        "request_datetime",
+        "on_scene_datetime",
+        "pickup_datetime",
+        "dropoff_datetime",
+        "PULocationID",
+        "DOLocationID",
+        "trip_miles",
+        "trip_time",
+        "base_passenger_fare",
+        "tolls",
+        "bcf",
+        "sales_tax",
+        "congestion_surcharge",
+        "airport_fee",
+        "tips",
+        "driver_pay",
+        "shared_request_flag",
+        "shared_match_flag",
+        "access_a_ride_flag",
+        "wav_request_flag",
+        "wav_match_flag",
+        "cbd_congestion_fee"
+      ]
+    },
+    "zone_lookup": {
+      "source": "taxi_zone_lookup",
+      "url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv",
+      "file": "taxi_zone_lookup.csv",
+      "action": "cached",
+      "retrieved_at": "2026-09-24T20:44:19+00:00",
+      "remote_content_length": 12331,
+      "bytes_on_disk": 12331,
+      "bytes_match": true,
+      "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+      "etag": "c6064b7c144c716450641f769659d178",
+      "remote_last_modified": "Thu, 22 Feb 2024 21:33:00 GMT",
+      "header": "\"LocationID\",\"Borough\",\"Zone\",\"service_zone\"",
+      "data_rows": 265
+    }
+  },
+  "row_counts": {
+    "parquet_footer": 22125744,
+    "scanned": 22125744,
+    "silver": 22125744,
+    "kpi_measurable": 21846110,
+    "held_out_of_kpi": 279634
+  },
+  "headline": {
+    "long_wait_rate": 0.0972,
+    "median_wait_min": 4.48,
+    "p90_wait_min": 9.9
+  },
+  "silver_path": "data\\silver\\month=2026-05\\fact_trip.parquet",
+  "outputs": {
+    "daily_trips.csv": "c5c922c19c54f720f6a52c69cb2fc42e31dacc743c4f0f10af37729bd6dac454",
+    "metrics_borough.csv": "3584a73ef1f5e09d7919861504a0e154c599ebf41bd7dce2545838a796661c79",
+    "metrics_wav.csv": "6fb87e076da42cfefbe7e1d053a956d7c9a98ccbb7e98d6b879aa9e47cce718f",
+    "metrics_zone.csv": "6f659a2fd255e58489eeb968e04f653852cd934eb1609619083da51bc6ca749f",
+    "reconciliation.json": "46474bc00c5c93fa89c1b8d2c4da082074a678e141d2fbcef95d9093a816f3ab",
+    "reconciliation_zone.csv": "51480bc559204c5b5943b084b123078745fabe08e2f675a2678488d0b540a2e3",
+    "validation_report.json": "ba10e00c75a48c3a8bb154b7ee0a5bff3045f67e5e42486be892bec789111760"
+  }
+}

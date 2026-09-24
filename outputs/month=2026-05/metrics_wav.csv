@@ -1,0 +1,7 @@
+month,licensee,rider_request,trips_total,trips_measured,measured_share,pickup_before_request_share,long_wait_rate,median_wait_min,wav_vehicle_share
+2026-05,All,Standard,22056576,21793950,0.9881,0.0117,0.0968,4.48,0.0954
+2026-05,All,WAV requested,69168,52160,0.7541,0.2452,0.2715,7.67,1.0
+2026-05,Lyft,Standard,6744246,6670412,0.9891,0.0108,0.0646,4.65,0.0598
+2026-05,Lyft,WAV requested,26682,11100,0.416,0.5837,0.3413,8.12,1.0
+2026-05,Uber,Standard,15312330,15123538,0.9877,0.0122,0.111,4.38,0.111
+2026-05,Uber,WAV requested,42486,41060,0.9664,0.0326,0.2527,7.57,1.0

@@ -1,0 +1,4 @@
+2026-09-25 02:45:14 | INFO    | run=20260924T211514Z-20026f | Pipeline start | month=2026-06 chaos=unpublished_month config=712d286d680d
+2026-09-25 02:45:14 | INFO    | run=20260924T211514Z-20026f | Stage extract | month=2026-06
+2026-09-25 02:45:14 | INFO    | run=20260924T211514Z-20026f | Reusing cached file | source=taxi_zone_lookup bytes=12331 sha256=1a99e1050922
+2026-09-25 02:45:15 | ERROR   | run=20260924T211514Z-20026f | PIPELINE FAILED | month=2026-06 stage=extract reason=TLC has not published fhvhv trip data for 2026-09 (HTTP 403 at https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2026-09.parquet). Files usually appear about 2 months after month end. | no processed output written; previous outputs for this month left untouched

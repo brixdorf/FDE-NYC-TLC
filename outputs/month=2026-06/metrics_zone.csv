@@ -1,0 +1,261 @@
+month,zone_id,borough,zone,trips_measured,long_wait_rate,median_wait_min,p90_wait_min
+2026-06,2,Queens,Jamaica Bay,70,0.3286,7.58,16.33
+2026-06,3,Bronx,Allerton/Pelham Gardens,50195,0.094,4.53,9.8
+2026-06,4,Manhattan,Alphabet City,50199,0.1292,5.05,10.98
+2026-06,5,Staten Island,Arden Heights,6418,0.2138,6.03,13.52
+2026-06,6,Staten Island,Arrochar/Fort Wadsworth,12803,0.1607,5.2,12.23
+2026-06,7,Queens,Astoria,209360,0.068,3.95,8.7
+2026-06,8,Queens,Astoria Park,1600,0.1394,4.46,11.54
+2026-06,9,Queens,Auburndale,20028,0.086,4.45,9.52
+2026-06,10,Queens,Baisley Park,72117,0.0911,4.57,9.7
+2026-06,11,Brooklyn,Bath Beach,25647,0.0676,4.12,8.87
+2026-06,12,Manhattan,Battery Park,2628,0.1233,4.96,10.97
+2026-06,13,Manhattan,Battery Park City,84439,0.0732,4.4,9.08
+2026-06,14,Brooklyn,Bay Ridge,120942,0.0586,3.98,8.45
+2026-06,15,Queens,Bay Terrace/Fort Totten,16358,0.1686,5.55,12.28
+2026-06,16,Queens,Bayside,46062,0.1009,4.58,10.03
+2026-06,17,Brooklyn,Bedford,166140,0.1582,5.42,11.95
+2026-06,18,Bronx,Bedford Park,100496,0.1361,5.03,11.25
+2026-06,19,Queens,Bellerose,19993,0.1348,5.33,11.02
+2026-06,20,Bronx,Belmont,61978,0.1378,5.02,11.35
+2026-06,21,Brooklyn,Bensonhurst East,57730,0.0702,4.13,8.92
+2026-06,22,Brooklyn,Bensonhurst West,76934,0.0685,4.2,8.87
+2026-06,23,Staten Island,Bloomfield/Emerson Hill,33169,0.1684,5.47,12.42
+2026-06,24,Manhattan,Bloomingdale,25155,0.1117,4.68,10.45
+2026-06,25,Brooklyn,Boerum Hill,116524,0.115,4.8,10.53
+2026-06,26,Brooklyn,Borough Park,109330,0.1037,4.9,10.13
+2026-06,27,Queens,Breezy Point/Fort Tilden/Riis Beach,2826,0.4664,9.43,19.88
+2026-06,28,Queens,Briarwood/Jamaica Hills,53996,0.1017,4.65,10.07
+2026-06,29,Brooklyn,Brighton Beach,47043,0.0704,4.12,8.9
+2026-06,30,Queens,Broad Channel,1823,0.3631,8.18,17.36
+2026-06,31,Bronx,Bronx Park,9467,0.1818,5.65,12.8
+2026-06,32,Bronx,Bronxdale,51752,0.1088,4.77,10.3
+2026-06,33,Brooklyn,Brooklyn Heights,99872,0.1089,4.67,10.33
+2026-06,34,Brooklyn,Brooklyn Navy Yard,16178,0.1893,5.62,13.23
+2026-06,35,Brooklyn,Brownsville,127523,0.1906,5.92,12.9
+2026-06,36,Brooklyn,Bushwick North,166739,0.1556,4.97,12.13
+2026-06,37,Brooklyn,Bushwick South,232992,0.152,5.2,11.9
+2026-06,38,Queens,Cambria Heights,28616,0.1531,5.4,11.72
+2026-06,39,Brooklyn,Canarsie,163285,0.1613,5.5,11.98
+2026-06,40,Brooklyn,Carroll Gardens,49919,0.0718,4.18,8.9
+2026-06,41,Manhattan,Central Harlem,131959,0.1563,5.47,11.95
+2026-06,42,Manhattan,Central Harlem North,181164,0.1906,5.9,13.03
+2026-06,43,Manhattan,Central Park,31475,0.0819,4.47,9.37
+2026-06,44,Staten Island,Charleston/Tottenville,10303,0.2502,6.35,14.78
+2026-06,45,Manhattan,Chinatown,49247,0.1173,4.82,10.65
+2026-06,46,Bronx,City Island,6012,0.421,8.75,19.4
+2026-06,47,Bronx,Claremont/Bathgate,71642,0.1458,5.32,11.53
+2026-06,48,Manhattan,Clinton East,182231,0.1026,4.45,10.12
+2026-06,49,Brooklyn,Clinton Hill,117264,0.1187,4.85,10.67
+2026-06,50,Manhattan,Clinton West,99393,0.0972,4.57,9.92
+2026-06,51,Bronx,Co-Op City,88152,0.1451,5.33,11.48
+2026-06,52,Brooklyn,Cobble Hill,31096,0.0668,4.03,8.67
+2026-06,53,Queens,College Point,34282,0.1682,5.38,12.38
+2026-06,54,Brooklyn,Columbia Street,12163,0.0734,4.3,9.0
+2026-06,55,Brooklyn,Coney Island,65924,0.1218,4.78,10.85
+2026-06,56,Queens,Corona,71974,0.123,4.82,10.83
+2026-06,57,Queens,Corona,6275,0.1516,5.12,11.97
+2026-06,58,Bronx,Country Club,7879,0.1877,5.78,12.73
+2026-06,59,Bronx,Crotona Park,2848,0.1622,5.52,12.08
+2026-06,60,Bronx,Crotona Park East,49145,0.1498,5.38,11.65
+2026-06,61,Brooklyn,Crown Heights North,274224,0.1635,5.45,12.15
+2026-06,62,Brooklyn,Crown Heights South,75777,0.1606,5.5,12.05
+2026-06,63,Brooklyn,Cypress Hills,71779,0.1205,4.8,10.72
+2026-06,64,Queens,Douglaston,15717,0.2292,6.43,13.66
+2026-06,65,Brooklyn,Downtown Brooklyn/MetroTech,96904,0.1488,5.28,11.63
+2026-06,66,Brooklyn,DUMBO/Vinegar Hill,80272,0.142,5.07,11.47
+2026-06,67,Brooklyn,Dyker Heights,41247,0.0716,4.22,9.03
+2026-06,68,Manhattan,East Chelsea,199515,0.0935,4.25,9.77
+2026-06,69,Bronx,East Concourse/Concourse Village,107683,0.1691,5.5,12.38
+2026-06,70,Queens,East Elmhurst,54630,0.0906,4.27,9.65
+2026-06,71,Brooklyn,East Flatbush/Farragut,91146,0.1468,5.32,11.57
+2026-06,72,Brooklyn,East Flatbush/Remsen Village,107390,0.1874,5.92,12.75
+2026-06,73,Queens,East Flushing,22408,0.0918,4.43,9.74
+2026-06,74,Manhattan,East Harlem North,141398,0.1769,5.7,12.47
+2026-06,75,Manhattan,East Harlem South,122302,0.1425,5.23,11.48
+2026-06,76,Brooklyn,East New York,243976,0.1298,5.08,11.02
+2026-06,77,Brooklyn,East New York/Pennsylvania Avenue,58669,0.1527,5.4,11.8
+2026-06,78,Bronx,East Tremont,95507,0.1488,5.23,11.67
+2026-06,79,Manhattan,East Village,213719,0.0797,4.18,9.23
+2026-06,80,Brooklyn,East Williamsburg,162844,0.1262,4.72,11.02
+2026-06,81,Bronx,Eastchester,64825,0.1397,5.33,11.33
+2026-06,82,Queens,Elmhurst,164146,0.1018,4.5,10.07
+2026-06,83,Queens,Elmhurst/Maspeth,53776,0.0876,4.38,9.55
+2026-06,84,Staten Island,Eltingville/Annadale/Prince's Bay,10503,0.1776,5.8,12.67
+2026-06,85,Brooklyn,Erasmus,68776,0.1265,5.12,10.9
+2026-06,86,Queens,Far Rockaway,45752,0.2729,6.82,15.18
+2026-06,87,Manhattan,Financial District North,119908,0.0922,4.4,9.72
+2026-06,88,Manhattan,Financial District South,52618,0.0979,4.52,9.93
+2026-06,89,Brooklyn,Flatbush/Ditmas Park,163833,0.0949,4.63,9.83
+2026-06,90,Manhattan,Flatiron,120091,0.0663,3.93,8.62
+2026-06,91,Brooklyn,Flatlands,105435,0.1337,5.12,11.1
+2026-06,92,Queens,Flushing,119076,0.1364,4.95,11.27
+2026-06,93,Queens,Flushing Meadows-Corona Park,24574,0.3473,7.0,21.77
+2026-06,94,Bronx,Fordham South,45695,0.1459,5.23,11.6
+2026-06,95,Queens,Forest Hills,156574,0.1092,4.63,10.35
+2026-06,96,Queens,Forest Park/Highland Park,3960,0.1434,5.3,11.42
+2026-06,97,Brooklyn,Fort Greene,139931,0.1437,5.12,11.57
+2026-06,98,Queens,Fresh Meadows,20984,0.1268,4.87,10.8
+2026-06,99,Staten Island,Freshkills Park,748,0.2406,6.43,13.42
+2026-06,100,Manhattan,Garment District,101811,0.1512,4.92,11.85
+2026-06,101,Queens,Glen Oaks,21781,0.1645,5.52,12.1
+2026-06,102,Queens,Glendale,54250,0.1198,4.92,10.72
+2026-06,105,Manhattan,Governor's Island/Ellis Island/Liberty Island,5,0.4,8.18,11.49
+2026-06,106,Brooklyn,Gowanus,48179,0.0697,4.3,8.88
+2026-06,107,Manhattan,Gramercy,127069,0.0625,4.07,8.55
+2026-06,108,Brooklyn,Gravesend,32041,0.072,4.22,8.98
+2026-06,109,Staten Island,Great Kills,15959,0.1988,5.9,13.45
+2026-06,110,Staten Island,Great Kills Park,76,0.2632,7.34,14.78
+2026-06,111,Brooklyn,Green-Wood Cemetery,1099,0.0901,4.28,9.56
+2026-06,112,Brooklyn,Greenpoint,205866,0.0904,4.28,9.63
+2026-06,113,Manhattan,Greenwich Village North,96491,0.0634,4.02,8.52
+2026-06,114,Manhattan,Greenwich Village South,105185,0.0836,4.2,9.38
+2026-06,115,Staten Island,Grymes Hill/Clifton,17736,0.1914,5.98,12.8
+2026-06,116,Manhattan,Hamilton Heights,92682,0.1721,5.55,12.57
+2026-06,117,Queens,Hammels/Arverne,35615,0.3096,7.25,16.17
+2026-06,118,Staten Island,Heartland Village/Todt Hill,22678,0.1798,5.58,12.75
+2026-06,119,Bronx,Highbridge,70290,0.1631,5.38,12.12
+2026-06,120,Manhattan,Highbridge Park,2217,0.1741,5.35,12.55
+2026-06,121,Queens,Hillcrest/Pomonok,45086,0.1138,4.77,10.45
+2026-06,122,Queens,Hollis,27317,0.1336,5.18,11.15
+2026-06,123,Brooklyn,Homecrest,60215,0.0558,4.0,8.3
+2026-06,124,Queens,Howard Beach,35045,0.1715,5.55,12.43
+2026-06,125,Manhattan,Hudson Sq,66023,0.0722,4.05,8.9
+2026-06,126,Bronx,Hunts Point,65974,0.1512,5.27,11.77
+2026-06,127,Manhattan,Inwood,83620,0.1212,4.7,10.77
+2026-06,128,Manhattan,Inwood Hill Park,6145,0.1046,4.5,10.15
+2026-06,129,Queens,Jackson Heights,176661,0.106,4.57,10.22
+2026-06,130,Queens,Jamaica,175595,0.1258,4.93,10.9
+2026-06,131,Queens,Jamaica Estates,34136,0.1071,4.75,10.23
+2026-06,132,Queens,JFK Airport,355002,0.2511,6.12,14.5
+2026-06,133,Brooklyn,Kensington,39680,0.0701,4.28,8.98
+2026-06,134,Queens,Kew Gardens,50796,0.0891,4.33,9.62
+2026-06,135,Queens,Kew Gardens Hills,38033,0.0984,4.6,9.97
+2026-06,136,Bronx,Kingsbridge Heights,52795,0.1382,5.08,11.35
+2026-06,137,Manhattan,Kips Bay,94821,0.0938,4.5,9.78
+2026-06,138,Queens,LaGuardia Airport,418516,0.2509,6.15,14.27
+2026-06,139,Queens,Laurelton,45347,0.1315,5.2,11.0
+2026-06,140,Manhattan,Lenox Hill East,105944,0.0914,4.45,9.7
+2026-06,141,Manhattan,Lenox Hill West,116546,0.0511,4.08,8.17
+2026-06,142,Manhattan,Lincoln Square East,114880,0.0721,4.3,8.95
+2026-06,143,Manhattan,Lincoln Square West,85259,0.0774,4.48,9.22
+2026-06,144,Manhattan,Little Italy/NoLiTa,128165,0.087,4.4,9.53
+2026-06,145,Queens,Long Island City/Hunters Point,190906,0.0832,4.23,9.37
+2026-06,146,Queens,Long Island City/Queens Plaza,55231,0.0629,3.92,8.57
+2026-06,147,Bronx,Longwood,43264,0.1299,4.9,11.03
+2026-06,148,Manhattan,Lower East Side,194833,0.1083,4.52,10.3
+2026-06,149,Brooklyn,Madison,52401,0.0522,3.93,8.15
+2026-06,150,Brooklyn,Manhattan Beach,24064,0.088,4.27,9.55
+2026-06,151,Manhattan,Manhattan Valley,51579,0.1061,4.75,10.25
+2026-06,152,Manhattan,Manhattanville,42991,0.1645,5.52,12.37
+2026-06,153,Manhattan,Marble Hill,19681,0.1439,5.3,11.57
+2026-06,154,Brooklyn,Marine Park/Floyd Bennett Field,2509,0.1929,5.65,12.99
+2026-06,155,Brooklyn,Marine Park/Mill Basin,60144,0.1332,5.03,11.22
+2026-06,156,Staten Island,Mariners Harbor,30000,0.1299,5.03,11.08
+2026-06,157,Queens,Maspeth,73787,0.1278,4.92,10.92
+2026-06,158,Manhattan,Meatpacking/West Village West,109243,0.0693,4.05,8.82
+2026-06,159,Bronx,Melrose South,96949,0.1492,5.23,11.77
+2026-06,160,Queens,Middle Village,50199,0.1078,4.8,10.27
+2026-06,161,Manhattan,Midtown Center,225906,0.0972,4.32,9.92
+2026-06,162,Manhattan,Midtown East,154872,0.0537,3.78,8.15
+2026-06,163,Manhattan,Midtown North,146149,0.0629,4.02,8.55
+2026-06,164,Manhattan,Midtown South,182432,0.1104,4.48,10.4
+2026-06,165,Brooklyn,Midwood,64251,0.0671,4.18,8.78
+2026-06,166,Manhattan,Morningside Heights,68683,0.1073,4.62,10.3
+2026-06,167,Bronx,Morrisania/Melrose,79625,0.1397,5.23,11.37
+2026-06,168,Bronx,Mott Haven/Port Morris,139700,0.1591,5.38,11.98
+2026-06,169,Bronx,Mount Hope,100646,0.1517,5.27,11.77
+2026-06,170,Manhattan,Murray Hill,164032,0.0896,4.35,9.63
+2026-06,171,Queens,Murray Hill-Queens,44924,0.0861,4.3,9.5
+2026-06,172,Staten Island,New Dorp/Midland Beach,14125,0.1905,5.58,13.15
+2026-06,173,Queens,North Corona,60544,0.1522,5.2,11.8
+2026-06,174,Bronx,Norwood,93044,0.0953,4.5,9.85
+2026-06,175,Queens,Oakland Gardens,17092,0.1426,5.18,11.35
+2026-06,176,Staten Island,Oakwood,7502,0.1946,5.87,13.5
+2026-06,177,Brooklyn,Ocean Hill,92789,0.1778,5.72,12.58
+2026-06,178,Brooklyn,Ocean Parkway South,20468,0.063,4.2,8.78
+2026-06,179,Queens,Old Astoria,78184,0.0762,4.2,9.08
+2026-06,180,Queens,Ozone Park,40024,0.0911,4.45,9.68
+2026-06,181,Brooklyn,Park Slope,196585,0.0684,3.95,8.72
+2026-06,182,Bronx,Parkchester,55801,0.1046,4.67,10.18
+2026-06,183,Bronx,Pelham Bay,30530,0.1056,4.57,10.18
+2026-06,184,Bronx,Pelham Bay Park,8504,0.2546,6.18,15.91
+2026-06,185,Bronx,Pelham Parkway,67937,0.1013,4.65,10.07
+2026-06,186,Manhattan,Penn Station/Madison Sq West,107726,0.1143,4.38,10.55
+2026-06,187,Staten Island,Port Richmond,16616,0.1386,5.23,11.4
+2026-06,188,Brooklyn,Prospect-Lefferts Gardens,159786,0.1403,5.27,11.37
+2026-06,189,Brooklyn,Prospect Heights,73029,0.1073,4.68,10.28
+2026-06,190,Brooklyn,Prospect Park,14642,0.1325,4.98,11.15
+2026-06,191,Queens,Queens Village,66473,0.1242,5.02,10.78
+2026-06,192,Queens,Queensboro Hill,29875,0.0868,4.3,9.58
+2026-06,193,Queens,Queensbridge/Ravenswood,40483,0.0907,4.52,9.65
+2026-06,194,Manhattan,Randalls Island,4696,0.2988,7.18,15.94
+2026-06,195,Brooklyn,Red Hook,42094,0.1477,5.1,11.77
+2026-06,196,Queens,Rego Park,57679,0.1012,4.67,10.05
+2026-06,197,Queens,Richmond Hill,96767,0.0939,4.48,9.8
+2026-06,198,Queens,Ridgewood,132729,0.1232,4.82,10.85
+2026-06,199,Bronx,Rikers Island,5,1.0,15.28,15.96
+2026-06,200,Bronx,Riverdale/North Riverdale/Fieldston,44450,0.1349,5.23,11.17
+2026-06,201,Queens,Rockaway Park,18602,0.2631,6.42,15.17
+2026-06,202,Manhattan,Roosevelt Island,12286,0.2163,6.38,13.38
+2026-06,203,Queens,Rosedale,41865,0.2201,6.45,13.22
+2026-06,204,Staten Island,Rossville/Woodrow,6337,0.1838,5.57,13.07
+2026-06,205,Queens,Saint Albans,92251,0.152,5.5,11.77
+2026-06,206,Staten Island,Saint George/New Brighton,48382,0.1709,5.32,12.5
+2026-06,207,Queens,Saint Michaels Cemetery/Woodside,4074,0.0334,3.87,7.35
+2026-06,208,Bronx,Schuylerville/Edgewater Park,74890,0.13,4.9,11.03
+2026-06,209,Manhattan,Seaport,43084,0.1112,4.77,10.42
+2026-06,210,Brooklyn,Sheepshead Bay,70427,0.0684,4.08,8.8
+2026-06,211,Manhattan,SoHo,102101,0.0617,3.9,8.47
+2026-06,212,Bronx,Soundview/Bruckner,61172,0.1179,4.88,10.62
+2026-06,213,Bronx,Soundview/Castle Hill,106850,0.1428,5.25,11.42
+2026-06,214,Staten Island,South Beach/Dongan Hills,18847,0.1529,4.98,11.92
+2026-06,215,Queens,South Jamaica,67256,0.1273,5.1,11.0
+2026-06,216,Queens,South Ozone Park,139537,0.0761,4.15,9.13
+2026-06,217,Brooklyn,South Williamsburg,36176,0.1793,5.9,12.49
+2026-06,218,Queens,Springfield Gardens North,45854,0.1245,5.2,10.77
+2026-06,219,Queens,Springfield Gardens South,38244,0.1439,5.5,11.43
+2026-06,220,Bronx,Spuyten Duyvil/Kingsbridge,79895,0.1074,4.8,10.27
+2026-06,221,Staten Island,Stapleton,30491,0.1712,5.57,12.55
+2026-06,222,Brooklyn,Starrett City,26812,0.1648,5.68,12.03
+2026-06,223,Queens,Steinway,111559,0.0677,3.8,8.63
+2026-06,224,Manhattan,Stuy Town/Peter Cooper Village,36078,0.1236,5.28,10.78
+2026-06,225,Brooklyn,Stuyvesant Heights,163618,0.1642,5.52,12.18
+2026-06,226,Queens,Sunnyside,134985,0.0824,4.33,9.33
+2026-06,227,Brooklyn,Sunset Park East,55280,0.0937,4.53,9.78
+2026-06,228,Brooklyn,Sunset Park West,121856,0.1093,4.72,10.33
+2026-06,229,Manhattan,Sutton Place/Turtle Bay North,101992,0.0421,3.75,7.62
+2026-06,230,Manhattan,Times Sq/Theatre District,227455,0.1349,4.72,11.28
+2026-06,231,Manhattan,TriBeCa/Civic Center,206974,0.0581,3.98,8.3
+2026-06,232,Manhattan,Two Bridges/Seward Park,79402,0.1559,5.47,11.88
+2026-06,233,Manhattan,UN/Turtle Bay South,98149,0.0715,4.27,9.0
+2026-06,234,Manhattan,Union Sq,186173,0.0713,4.05,8.85
+2026-06,235,Bronx,University Heights/Morris Heights,88659,0.1783,5.75,12.6
+2026-06,236,Manhattan,Upper East Side North,124042,0.0521,4.12,8.2
+2026-06,237,Manhattan,Upper East Side South,152449,0.0378,3.68,7.42
+2026-06,238,Manhattan,Upper West Side North,91452,0.0859,4.43,9.48
+2026-06,239,Manhattan,Upper West Side South,110415,0.0706,4.23,8.9
+2026-06,240,Bronx,Van Cortlandt Park,17329,0.1548,5.62,11.73
+2026-06,241,Bronx,Van Cortlandt Village,79915,0.1205,5.0,10.7
+2026-06,242,Bronx,Van Nest/Morris Park,83973,0.0974,4.5,9.92
+2026-06,243,Manhattan,Washington Heights North,112576,0.1444,5.07,11.63
+2026-06,244,Manhattan,Washington Heights South,151836,0.1535,5.08,12.0
+2026-06,245,Staten Island,West Brighton,18042,0.1708,5.63,12.31
+2026-06,246,Manhattan,West Chelsea/Hudson Yards,212464,0.1033,4.62,10.12
+2026-06,247,Bronx,West Concourse,112970,0.1876,5.73,12.97
+2026-06,248,Bronx,West Farms/Bronx River,54496,0.1274,5.05,10.9
+2026-06,249,Manhattan,West Village,161804,0.0765,4.13,9.12
+2026-06,250,Bronx,Westchester Village/Unionport,54598,0.0934,4.48,9.78
+2026-06,251,Staten Island,Westerleigh,18125,0.1347,5.13,11.32
+2026-06,252,Queens,Whitestone,30332,0.147,5.28,11.58
+2026-06,253,Queens,Willets Point,1141,0.2025,5.58,14.07
+2026-06,254,Bronx,Williamsbridge/Olinville,106963,0.1415,5.3,11.37
+2026-06,255,Brooklyn,Williamsburg (North Side),199316,0.1051,4.37,10.2
+2026-06,256,Brooklyn,Williamsburg (South Side),171109,0.1103,4.65,10.4
+2026-06,257,Brooklyn,Windsor Terrace,32228,0.0652,4.15,8.67
+2026-06,258,Queens,Woodhaven,70742,0.1112,4.77,10.37
+2026-06,259,Bronx,Woodlawn/Wakefield,75635,0.173,5.82,12.18
+2026-06,260,Queens,Woodside,100084,0.0656,4.02,8.72
+2026-06,261,Manhattan,World Trade Center,68160,0.1029,4.65,10.1
+2026-06,262,Manhattan,Yorkville East,62456,0.0892,4.72,9.65
+2026-06,263,Manhattan,Yorkville West,96032,0.071,4.43,8.98

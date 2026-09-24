@@ -1,0 +1,37 @@
+2026-09-25 02:43:21 | INFO    | run=20260924T211259Z-085178 | Pipeline start | month=2026-06 chaos=None config=712d286d680d
+2026-09-25 02:43:21 | INFO    | run=20260924T211259Z-085178 | Stage extract | month=2026-06
+2026-09-25 02:43:21 | INFO    | run=20260924T211259Z-085178 | Reusing cached file | source=taxi_zone_lookup bytes=12331 sha256=1a99e1050922
+2026-09-25 02:43:22 | INFO    | run=20260924T211259Z-085178 | Reusing cached file | source=tlc_trip_file:2026-06 bytes=506800012 sha256=300f8dccfae9
+2026-09-25 02:43:22 | INFO    | run=20260924T211259Z-085178 | Trip file ready | month=2026-06 rows_in_footer=20775868 columns=25
+2026-09-25 02:43:22 | INFO    | run=20260924T211259Z-085178 | Stage validate | month=2026-06
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=D01.schema_contract status=PASS detail=14 required columns present with expected types; 11 optional columns: airport_fee, base_passenger_fare, bcf, cbd_congestion_fee, congestion_surcharge, driver_pay, originating_base_num, sales_tax, shared_match_flag, tips, tolls
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=D02.footer_row_count status=PASS detail=scanned 20775868 rows = Parquet footer 20775868
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=D03.zone_lookup status=PASS detail=265 unique zones across 8 borough labels
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=D04.exact_duplicate_rows status=PASS detail=0 extra copies of identical rows
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=D05.flag_domain status=PASS detail=0 flag values outside Y/N across 5 flag columns
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=D06.daily_volume_dips status=WARN detail=6 licensee-days below 75% of their weekday median; estimated shortfall 393105 trips
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=R01.missing_timestamp status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=R02.pickup_outside_month status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R03.pickup_before_request status=WARN detail=260908 trips (1.256%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R04.wait_over_cap status=WARN detail=958 trips (0.005%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R05.dropoff_not_after_pickup status=WARN detail=2 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R06.implausible_trip status=WARN detail=5855 trips (0.028%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R07.pickup_zone_unknown status=WARN detail=1241 trips (0.006%) flagged; scope: borough and zone breakdowns (still counted citywide)
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R08.on_scene_out_of_order status=WARN detail=385484 trips (1.855%) flagged; scope: stage-split metric only
+2026-09-25 02:43:30 | WARNING | run=20260924T211259Z-085178 | Validation | check=R09.trip_time_mismatch status=WARN detail=581494 trips (2.799%) flagged; scope: none (trip_time is not used; duration comes from timestamps)
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=R10.unknown_license status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Validation | check=G01.kpi_population_share status=PASS detail=20508401 of 20775868 trips (98.71%) usable for the wait KPI (PASS >= 97%, FAIL < 90%)
+2026-09-25 02:43:30 | INFO    | run=20260924T211259Z-085178 | Stage model | month=2026-06
+2026-09-25 02:43:35 | INFO    | run=20260924T211259Z-085178 | Model | built fact_trip rows=20775868 path=D:\My Codes\FDE_Assignment_2\data\silver\month=2026-06\fact_trip.parquet
+2026-09-25 02:43:35 | INFO    | run=20260924T211259Z-085178 | Stage reconcile | month=2026-06
+2026-09-25 02:43:37 | INFO    | run=20260924T211259Z-085178 | Fetched API page | source=socrata:c5iv-bn4s page=1 rows=260 cumulative=260 expected=260
+2026-09-25 02:43:37 | INFO    | run=20260924T211259Z-085178 | Reconcile | check=C01.pickups_vs_tlc_zone_report status=FAIL detail=file 20775868 vs TLC published 21231358 pickups: delta -455490 (-2.145%); 1 zones differ by more than 5.0%
+2026-09-25 02:43:38 | INFO    | run=20260924T211259Z-085178 | Fetched API page | source=socrata:2v9c-2k7f page=1 rows=0 cumulative=0 expected=0
+2026-09-25 02:43:38 | INFO    | run=20260924T211259Z-085178 | Reconcile | check=C02.trips_vs_tlc_base_report status=UNKNOWN detail=TLC has not published the 2026-06 base report yet (it lags the trip files)
+2026-09-25 02:43:38 | INFO    | run=20260924T211259Z-085178 | Stage metrics | month=2026-06
+2026-09-25 02:43:43 | WARNING | run=20260924T211259Z-085178 | Publish | month=2026-06 missing trips 455490 could move the citywide long-wait rate from 0.1204 to between 0.1178 and 0.1395 (estimate 0.1195)
+2026-09-25 02:43:44 | INFO    | run=20260924T211259Z-085178 | Publish | month=2026-06 decision=HOLD degraded=False long_wait_rate=0.1204 outputs=D:\My Codes\FDE_Assignment_2\outputs\month=2026-06
+2026-09-25 02:43:44 | WARNING | run=20260924T211259Z-085178 | Publish caveat | month=2026-06 D06.daily_volume_dips=WARN: 6 licensee-days below 75% of their weekday median; estimated shortfall 393105 trips
+2026-09-25 02:43:44 | WARNING | run=20260924T211259Z-085178 | Publish caveat | month=2026-06 C01.pickups_vs_tlc_zone_report=FAIL: file 20775868 vs TLC published 21231358 pickups: delta -455490 (-2.145%); 1 zones differ by more than 5.0%
+2026-09-25 02:43:44 | WARNING | run=20260924T211259Z-085178 | Publish caveat | month=2026-06 C02.trips_vs_tlc_base_report=UNKNOWN: TLC has not published the 2026-06 base report yet (it lags the trip files)
+2026-09-25 02:43:44 | INFO    | run=20260924T211259Z-085178 | Pipeline finished | month=2026-06 status=SUCCESS

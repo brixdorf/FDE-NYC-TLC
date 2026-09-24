@@ -1,0 +1,22 @@
+{
+  "month": "2026-07",
+  "checks": [
+    {
+      "check": "C01.pickups_vs_tlc_zone_report",
+      "status": "PASS",
+      "detail": "file 20921249 vs TLC published 20920001 pickups: delta +1248 (+0.006%); 0 zones differ by more than 5.0%",
+      "file_trips": 20921249,
+      "tlc_published_trips": 20920001,
+      "delta": 1248,
+      "delta_pct": 0.006,
+      "zones_compared": 262,
+      "zones_over_threshold": 0,
+      "api_rows": 260
+    },
+    {
+      "check": "C02.trips_vs_tlc_base_report",
+      "status": "UNKNOWN",
+      "detail": "TLC has not published the 2026-07 base report yet (it lags the trip files)"
+    }
+  ]
+}

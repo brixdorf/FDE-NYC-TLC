@@ -1,0 +1,106 @@
+{
+  "run_id": "20260924T211425Z-681b15",
+  "month": "2026-06",
+  "started_at": "2026-09-24T21:14:25+00:00",
+  "finished_at": "2026-09-24T21:15:13+00:00",
+  "duration_seconds": 47.6,
+  "stage_seconds": {
+    "extract": 0.6,
+    "validate": 6.4,
+    "model": 5.0,
+    "reconcile": 30.3,
+    "metrics": 5.3
+  },
+  "git_commit": "1a4c121",
+  "config_fingerprint": "712d286d680d",
+  "chaos": "api_down",
+  "publish_decision": "PUBLISH WITH CAVEATS",
+  "decision_reasons": [
+    "D06.daily_volume_dips=WARN: 6 licensee-days below 75% of their weekday median; estimated shortfall 393105 trips",
+    "C01.pickups_vs_tlc_zone_report=UNKNOWN: TLC aggregate unavailable: socrata:c5iv-bn4s: gave up after 4 attempts (ConnectionError)",
+    "C02.trips_vs_tlc_base_report=UNKNOWN: TLC aggregate unavailable: socrata:2v9c-2k7f: gave up after 4 attempts (ConnectionError)"
+  ],
+  "degraded": true,
+  "kpi_impact_of_missing_trips": null,
+  "validation_status": "WARN",
+  "inputs": {
+    "trip_file": {
+      "source": "tlc_trip_file:2026-06",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_2026-06.parquet",
+      "file": "fhvhv_tripdata_2026-06.parquet",
+      "action": "cached",
+      "retrieved_at": "2026-09-24T20:44:20+00:00",
+      "remote_content_length": 506800012,
+      "bytes_on_disk": 506800012,
+      "bytes_match": true,
+      "sha256": "300f8dccfae9025383deeec3c1daecf6c16653615dbdcfec8d77a76804314f48",
+      "etag": "f984f6804c41a6f827d155442d807d96-30",
+      "remote_last_modified": "Thu, 17 Sep 2026 14:43:53 GMT",
+      "parquet_footer_rows": 20775868,
+      "parquet_row_groups": 20,
+      "parquet_columns": [
+        "hvfhs_license_num",
+        "dispatching_base_num",
+        "originating_base_num",
+        "request_datetime",
+        "on_scene_datetime",
+        "pickup_datetime",
+        "dropoff_datetime",
+        "PULocationID",
+        "DOLocationID",
+        "trip_miles",
+        "trip_time",
+        "base_passenger_fare",
+        "tolls",
+        "bcf",
+        "sales_tax",
+        "congestion_surcharge",
+        "airport_fee",
+        "tips",
+        "driver_pay",
+        "shared_request_flag",
+        "shared_match_flag",
+        "access_a_ride_flag",
+        "wav_request_flag",
+        "wav_match_flag",
+        "cbd_congestion_fee"
+      ]
+    },
+    "zone_lookup": {
+      "source": "taxi_zone_lookup",
+      "url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv",
+      "file": "taxi_zone_lookup.csv",
+      "action": "cached",
+      "retrieved_at": "2026-09-24T20:44:19+00:00",
+      "remote_content_length": 12331,
+      "bytes_on_disk": 12331,
+      "bytes_match": true,
+      "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+      "etag": "c6064b7c144c716450641f769659d178",
+      "remote_last_modified": "Thu, 22 Feb 2024 21:33:00 GMT",
+      "header": "\"LocationID\",\"Borough\",\"Zone\",\"service_zone\"",
+      "data_rows": 265
+    }
+  },
+  "row_counts": {
+    "parquet_footer": 20775868,
+    "scanned": 20775868,
+    "silver": 20775868,
+    "kpi_measurable": 20508401,
+    "held_out_of_kpi": 267467
+  },
+  "headline": {
+    "long_wait_rate": 0.1204,
+    "median_wait_min": 4.77,
+    "p90_wait_min": 10.75
+  },
+  "silver_path": "data\\silver\\month=2026-06\\fact_trip.parquet",
+  "outputs": {
+    "daily_trips.csv": "848f7805e87763f200a5842a42be2b2ea5c1967064b216ee04f572a8846845e6",
+    "metrics_borough.csv": "2bfa176c79051a20632b4888930488646096109937b5aef47f70476d127cbab4",
+    "metrics_wav.csv": "e7e9f6cdc9ac6a4d9bed9fc6f51318737b11824b4ef3e8535662338b336673fc",
+    "metrics_zone.csv": "53b31d5fa9c94be8a13fd03544a0d6aa0a9fc68d10b7e1ecb45bd787973a65ea",
+    "reconciliation.json": "d265c9510cdce118174e24d639fc15fc16527d723799209c1fc75f0293ee7ed4",
+    "validation_report.json": "73ffb392010e34d81de1d0d6481858e8de50100e19a589102e170e39d54869c0"
+  }
+}

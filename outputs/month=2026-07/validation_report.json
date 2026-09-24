@@ -1,0 +1,257 @@
+{
+  "month": "2026-07",
+  "checks": [
+    {
+      "check": "D01.schema_contract",
+      "status": "PASS",
+      "detail": "14 required columns present with expected types; 11 optional columns: airport_fee, base_passenger_fare, bcf, cbd_congestion_fee, congestion_surcharge, driver_pay, originating_base_num, sales_tax, shared_match_flag, tips, tolls"
+    },
+    {
+      "check": "D02.footer_row_count",
+      "status": "PASS",
+      "detail": "scanned 20921249 rows = Parquet footer 20921249"
+    },
+    {
+      "check": "D03.zone_lookup",
+      "status": "PASS",
+      "detail": "265 unique zones across 8 borough labels"
+    },
+    {
+      "check": "D04.exact_duplicate_rows",
+      "status": "PASS",
+      "detail": "0 extra copies of identical rows",
+      "count": 0
+    },
+    {
+      "check": "D05.flag_domain",
+      "status": "PASS",
+      "detail": "0 flag values outside Y/N across 5 flag columns",
+      "count": 0
+    },
+    {
+      "check": "D06.daily_volume_dips",
+      "status": "PASS",
+      "detail": "0 licensee-days below 75% of their weekday median; estimated shortfall 0 trips",
+      "dips": [],
+      "estimated_shortfall": 0
+    },
+    {
+      "check": "R01.missing_timestamp",
+      "status": "PASS",
+      "detail": "0 trips (0.000%) flagged; scope: wait KPI and all wait metrics",
+      "count": 0,
+      "share": 0.0,
+      "action": "Quarantine; wait cannot be measured."
+    },
+    {
+      "check": "R02.pickup_outside_month",
+      "status": "PASS",
+      "detail": "0 trips (0.000%) flagged; scope: wait KPI and all wait metrics",
+      "count": 0,
+      "share": 0.0,
+      "action": "Exclude from this month; report the count."
+    },
+    {
+      "check": "R03.pickup_before_request",
+      "status": "WARN",
+      "detail": "246534 trips (1.178%) flagged; scope: wait KPI and all wait metrics",
+      "count": 246534,
+      "share": 0.011784,
+      "action": "Quarantine, do not clip to zero. Likely pre-scheduled rides whose request time is the booked time; owner to confirm."
+    },
+    {
+      "check": "R04.wait_over_cap",
+      "status": "WARN",
+      "detail": "1164 trips (0.006%) flagged; scope: wait KPI and all wait metrics",
+      "count": 1164,
+      "share": 5.6e-05,
+      "action": "Hold out of the KPI; likely reservation or data error; report the count."
+    },
+    {
+      "check": "R05.dropoff_not_after_pickup",
+      "status": "WARN",
+      "detail": "2 trips (0.000%) flagged; scope: wait KPI and all wait metrics",
+      "count": 2,
+      "share": 0.0,
+      "action": "Quarantine; chronology is broken so the record is untrustworthy."
+    },
+    {
+      "check": "R06.implausible_trip",
+      "status": "WARN",
+      "detail": "3053 trips (0.015%) flagged; scope: wait KPI and all wait metrics",
+      "count": 3053,
+      "share": 0.000146,
+      "action": "Quarantine; the record may not describe a real passenger trip."
+    },
+    {
+      "check": "R07.pickup_zone_unknown",
+      "status": "WARN",
+      "detail": "1245 trips (0.006%) flagged; scope: borough and zone breakdowns (still counted citywide)",
+      "count": 1245,
+      "share": 6e-05,
+      "action": "Keep citywide; no borough."
+    },
+    {
+      "check": "R08.on_scene_out_of_order",
+      "status": "WARN",
+      "detail": "367168 trips (1.755%) flagged; scope: stage-split metric only",
+      "count": 367168,
+      "share": 0.01755,
+      "action": "Exclude from arrival/boarding split."
+    },
+    {
+      "check": "R09.trip_time_mismatch",
+      "status": "WARN",
+      "detail": "622261 trips (2.974%) flagged; scope: none (trip_time is not used; duration comes from timestamps)",
+      "count": 622261,
+      "share": 0.029743,
+      "action": "Report only; ask owner what trip_time measures."
+    },
+    {
+      "check": "R10.unknown_license",
+      "status": "PASS",
+      "detail": "0 trips (0.000%) flagged; scope: wait KPI and all wait metrics",
+      "count": 0,
+      "share": 0.0,
+      "action": "Quarantine; the trip cannot be attributed."
+    },
+    {
+      "check": "G01.kpi_population_share",
+      "status": "PASS",
+      "detail": "20670735 of 20921249 trips (98.80%) usable for the wait KPI (PASS >= 97%, FAIL < 90%)",
+      "count": 20670735,
+      "share": 0.988026
+    },
+    {
+      "check": "D07.silver_row_conservation",
+      "status": "PASS",
+      "detail": "source rows 20921249 -> silver rows 20921249 (nothing dropped, only flagged)"
+    }
+  ],
+  "schema": {
+    "columns": {
+      "hvfhs_license_num": "VARCHAR",
+      "dispatching_base_num": "VARCHAR",
+      "originating_base_num": "VARCHAR",
+      "request_datetime": "TIMESTAMP",
+      "on_scene_datetime": "TIMESTAMP",
+      "pickup_datetime": "TIMESTAMP",
+      "dropoff_datetime": "TIMESTAMP",
+      "PULocationID": "INTEGER",
+      "DOLocationID": "INTEGER",
+      "trip_miles": "DOUBLE",
+      "trip_time": "BIGINT",
+      "base_passenger_fare": "DOUBLE",
+      "tolls": "DOUBLE",
+      "bcf": "DOUBLE",
+      "sales_tax": "DOUBLE",
+      "congestion_surcharge": "DOUBLE",
+      "airport_fee": "DOUBLE",
+      "tips": "DOUBLE",
+      "driver_pay": "DOUBLE",
+      "shared_request_flag": "VARCHAR",
+      "shared_match_flag": "VARCHAR",
+      "access_a_ride_flag": "VARCHAR",
+      "wav_request_flag": "VARCHAR",
+      "wav_match_flag": "VARCHAR",
+      "cbd_congestion_fee": "DOUBLE"
+    },
+    "missing_required": [],
+    "retyped_required": [],
+    "optional_columns": [
+      "airport_fee",
+      "base_passenger_fare",
+      "bcf",
+      "cbd_congestion_fee",
+      "congestion_surcharge",
+      "driver_pay",
+      "originating_base_num",
+      "sales_tax",
+      "shared_match_flag",
+      "tips",
+      "tolls"
+    ]
+  },
+  "trip_rules": [
+    {
+      "rule_id": "R01",
+      "name": "missing_timestamp",
+      "plain_english": "Request, pickup and dropoff times must all be present.",
+      "sql": "request_datetime IS NULL OR pickup_datetime IS NULL OR dropoff_datetime IS NULL",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Quarantine; wait cannot be measured."
+    },
+    {
+      "rule_id": "R02",
+      "name": "pickup_outside_month",
+      "plain_english": "A trip belongs to the month file its pickup falls in.",
+      "sql": "pickup_datetime < TIMESTAMP '{month_start}' OR pickup_datetime >= TIMESTAMP '{month_end}'",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Exclude from this month; report the count."
+    },
+    {
+      "rule_id": "R03",
+      "name": "pickup_before_request",
+      "plain_english": "A rider cannot be picked up before requesting the ride.",
+      "sql": "wait_s < 0",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Quarantine, do not clip to zero. Likely pre-scheduled rides whose request time is the booked time; owner to confirm."
+    },
+    {
+      "rule_id": "R04",
+      "name": "wait_over_cap",
+      "plain_english": "A request-to-pickup gap above 60 minutes is not an on-demand wait.",
+      "sql": "wait_s > 3600",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Hold out of the KPI; likely reservation or data error; report the count."
+    },
+    {
+      "rule_id": "R05",
+      "name": "dropoff_not_after_pickup",
+      "plain_english": "Dropoff must be after pickup.",
+      "sql": "duration_s <= 0",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Quarantine; chronology is broken so the record is untrustworthy."
+    },
+    {
+      "rule_id": "R06",
+      "name": "implausible_trip",
+      "plain_english": "A real trip has positive miles, lasts under 4 hours and averages under 70 mph.",
+      "sql": "trip_miles <= 0 OR duration_s > 14400 OR trip_miles / nullif(duration_s / 3600.0, 0) > 70",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Quarantine; the record may not describe a real passenger trip."
+    },
+    {
+      "rule_id": "R07",
+      "name": "pickup_zone_unknown",
+      "plain_english": "Pickup zone must be a known NYC taxi zone (not 264 Unknown / 265 Outside NYC).",
+      "sql": "PULocationID IS NULL OR PULocationID IN (264, 265) OR PULocationID NOT IN (SELECT location_id FROM dim_zone)",
+      "scope": "borough and zone breakdowns (still counted citywide)",
+      "action": "Keep citywide; no borough."
+    },
+    {
+      "rule_id": "R08",
+      "name": "on_scene_out_of_order",
+      "plain_english": "Driver arrival (on scene) must fall between request and pickup.",
+      "sql": "on_scene_datetime IS NULL OR on_scene_datetime < request_datetime OR on_scene_datetime > pickup_datetime",
+      "scope": "stage-split metric only",
+      "action": "Exclude from arrival/boarding split."
+    },
+    {
+      "rule_id": "R09",
+      "name": "trip_time_mismatch",
+      "plain_english": "trip_time should equal dropoff minus pickup within 60 seconds.",
+      "sql": "abs(trip_time - duration_s) > 60",
+      "scope": "none (trip_time is not used; duration comes from timestamps)",
+      "action": "Report only; ask owner what trip_time measures."
+    },
+    {
+      "rule_id": "R10",
+      "name": "unknown_license",
+      "plain_english": "License number must be one of the HVFHS licensees in the TLC dictionary.",
+      "sql": "hvfhs_license_num IS NULL OR hvfhs_license_num NOT IN ({licenses})",
+      "scope": "wait KPI and all wait metrics",
+      "action": "Quarantine; the trip cannot be attributed."
+    }
+  ]
+}

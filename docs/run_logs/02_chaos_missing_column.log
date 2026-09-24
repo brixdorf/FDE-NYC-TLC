@@ -1,0 +1,8 @@
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Pipeline start | month=2026-06 chaos=missing_column config=712d286d680d
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Stage extract | month=2026-06
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Reusing cached file | source=taxi_zone_lookup bytes=12331 sha256=1a99e1050922
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Reusing cached file | source=tlc_trip_file:2026-06 bytes=506800012 sha256=300f8dccfae9
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Trip file ready | month=2026-06 rows_in_footer=20775868 columns=25
+2026-09-25 02:44:11 | INFO    | run=20260924T211411Z-f78e2e | Stage validate | month=2026-06
+2026-09-25 02:44:11 | ERROR   | run=20260924T211411Z-f78e2e | Validation | check=schema_contract status=FAIL detail=missing required columns: ['request_datetime']; wrong type: []
+2026-09-25 02:44:11 | ERROR   | run=20260924T211411Z-f78e2e | PIPELINE FAILED | month=2026-06 stage=validate reason=schema contract broken: missing required columns: ['request_datetime']; wrong type: [] | no processed output written; previous outputs for this month left untouched

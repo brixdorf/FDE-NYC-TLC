@@ -1,0 +1,15 @@
+{
+  "month": "2026-06",
+  "checks": [
+    {
+      "check": "C01.pickups_vs_tlc_zone_report",
+      "status": "UNKNOWN",
+      "detail": "TLC aggregate unavailable: socrata:c5iv-bn4s: gave up after 4 attempts (ConnectionError)"
+    },
+    {
+      "check": "C02.trips_vs_tlc_base_report",
+      "status": "UNKNOWN",
+      "detail": "TLC aggregate unavailable: socrata:2v9c-2k7f: gave up after 4 attempts (ConnectionError)"
+    }
+  ]
+}

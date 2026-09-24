@@ -1,0 +1,33 @@
+2026-09-25 02:42:59 | INFO    | run=20260924T211259Z-085178 | Pipeline start | month=2026-05 chaos=None config=712d286d680d
+2026-09-25 02:42:59 | INFO    | run=20260924T211259Z-085178 | Stage extract | month=2026-05
+2026-09-25 02:42:59 | INFO    | run=20260924T211259Z-085178 | Reusing cached file | source=taxi_zone_lookup bytes=12331 sha256=1a99e1050922
+2026-09-25 02:43:00 | INFO    | run=20260924T211259Z-085178 | Reusing cached file | source=tlc_trip_file:2026-05 bytes=537576484 sha256=e2b633a5be22
+2026-09-25 02:43:00 | INFO    | run=20260924T211259Z-085178 | Trip file ready | month=2026-05 rows_in_footer=22125744 columns=25
+2026-09-25 02:43:00 | INFO    | run=20260924T211259Z-085178 | Stage validate | month=2026-05
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D01.schema_contract status=PASS detail=14 required columns present with expected types; 11 optional columns: airport_fee, base_passenger_fare, bcf, cbd_congestion_fee, congestion_surcharge, driver_pay, originating_base_num, sales_tax, shared_match_flag, tips, tolls
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D02.footer_row_count status=PASS detail=scanned 22125744 rows = Parquet footer 22125744
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D03.zone_lookup status=PASS detail=265 unique zones across 8 borough labels
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D04.exact_duplicate_rows status=PASS detail=0 extra copies of identical rows
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D05.flag_domain status=PASS detail=0 flag values outside Y/N across 5 flag columns
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=D06.daily_volume_dips status=PASS detail=0 licensee-days below 75% of their weekday median; estimated shortfall 0 trips
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=R01.missing_timestamp status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=R02.pickup_outside_month status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R03.pickup_before_request status=WARN detail=275536 trips (1.245%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R04.wait_over_cap status=WARN detail=965 trips (0.004%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=R05.dropoff_not_after_pickup status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R06.implausible_trip status=WARN detail=3375 trips (0.015%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R07.pickup_zone_unknown status=WARN detail=1182 trips (0.005%) flagged; scope: borough and zone breakdowns (still counted citywide)
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R08.on_scene_out_of_order status=WARN detail=402971 trips (1.821%) flagged; scope: stage-split metric only
+2026-09-25 02:43:07 | WARNING | run=20260924T211259Z-085178 | Validation | check=R09.trip_time_mismatch status=WARN detail=996116 trips (4.502%) flagged; scope: none (trip_time is not used; duration comes from timestamps)
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=R10.unknown_license status=PASS detail=0 trips (0.000%) flagged; scope: wait KPI and all wait metrics
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Validation | check=G01.kpi_population_share status=PASS detail=21846110 of 22125744 trips (98.74%) usable for the wait KPI (PASS >= 97%, FAIL < 90%)
+2026-09-25 02:43:07 | INFO    | run=20260924T211259Z-085178 | Stage model | month=2026-05
+2026-09-25 02:43:12 | INFO    | run=20260924T211259Z-085178 | Model | built fact_trip rows=22125744 path=D:\My Codes\FDE_Assignment_2\data\silver\month=2026-05\fact_trip.parquet
+2026-09-25 02:43:12 | INFO    | run=20260924T211259Z-085178 | Stage reconcile | month=2026-05
+2026-09-25 02:43:14 | INFO    | run=20260924T211259Z-085178 | Fetched API page | source=socrata:c5iv-bn4s page=1 rows=260 cumulative=260 expected=260
+2026-09-25 02:43:14 | INFO    | run=20260924T211259Z-085178 | Reconcile | check=C01.pickups_vs_tlc_zone_report status=PASS detail=file 22125744 vs TLC published 22124561 pickups: delta +1183 (+0.005%); 0 zones differ by more than 5.0%
+2026-09-25 02:43:15 | INFO    | run=20260924T211259Z-085178 | Fetched API page | source=socrata:2v9c-2k7f page=1 rows=2 cumulative=2 expected=2
+2026-09-25 02:43:15 | INFO    | run=20260924T211259Z-085178 | Reconcile | check=C02.trips_vs_tlc_base_report status=PASS detail=LYFT +0 (+0.000%); UBER +0 (+0.000%)
+2026-09-25 02:43:15 | INFO    | run=20260924T211259Z-085178 | Stage metrics | month=2026-05
+2026-09-25 02:43:21 | INFO    | run=20260924T211259Z-085178 | Publish | month=2026-05 decision=PUBLISH degraded=False long_wait_rate=0.0972 outputs=D:\My Codes\FDE_Assignment_2\outputs\month=2026-05
+2026-09-25 02:43:21 | INFO    | run=20260924T211259Z-085178 | Pipeline finished | month=2026-05 status=SUCCESS
