@@ -1,0 +1,21 @@
+# Class material (reference only, not part of the submission)
+Notes/
+Code/
+FDE_Assignment2.pdf
+
+# Local environment
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Pipeline data layers (raw and silver are large and reproducible from source)
+data/
+logs/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
