@@ -60,7 +60,7 @@ These are the candidates to raise in licensee reviews. Airport zones need their 
 | Month | Run id | Git commit | Config | Trip file SHA-256 |
 |---|---|---|---|---|
 | 2026-05 | `20260924T211259Z-085178` | `1a4c121` | `712d286d680d` | `e2b633a5be2280da...` |
-| 2026-06 | `20260924T211516Z-eacffe` | `1a4c121` | `712d286d680d` | `300f8dccfae90253...` |
+| 2026-06 | `20260924T211600Z-a7a941` | `1a4c121` | `712d286d680d` | `300f8dccfae90253...` |
 | 2026-07 | `20260924T211259Z-085178` | `1a4c121` | `712d286d680d` | `8da280d9d23813aa...` |
 
 Latest month in this report: 2026-07.
