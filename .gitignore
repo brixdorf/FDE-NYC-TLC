@@ -19,3 +19,7 @@ logs/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Private prep notes (kept local, not published)
+STUDY_GUIDE.md
+DEMO_SCRIPT.md
