@@ -1,161 +1,108 @@
-# NYC Rider Wait Pipeline (TLC High Volume FHV)
+# <img src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f695.svg" width="36" alt=""> NYC Rider Wait Pipeline
 
-FDE Data Foundations assignment, **Track B: NYC TLC**. A small, dependable monthly pipeline that turns TLC's published app-based trip records into a trustworthy rider-wait KPI. It also says, each month, whether the number is safe to publish.
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
+![DuckDB](https://img.shields.io/badge/DuckDB-SQL-FFF000?logo=duckdb&logoColor=black)
+![pandas](https://img.shields.io/badge/pandas-data-150458?logo=pandas&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-24%20passing-2ea44f?logo=pytest&logoColor=white)
+[![Data: NYC TLC](https://img.shields.io/badge/data-NYC%20TLC%20trip%20records-FFD700)](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+[![API: NYC Open Data](https://img.shields.io/badge/API-NYC%20Open%20Data-0A66C2)](https://data.cityofnewyork.us/)
+
+**How long do New Yorkers wait for an Uber or Lyft, and can this month's number be trusted?** Every month, this pipeline answers both questions from the city's public trip records.
+
+FDE Data Foundations assignment, Track B (NYC TLC).
 
 | | |
 |---|---|
-| **Problem** | Riders complain about long waits for app-based rides, especially outside Manhattan. TLC has 21M trip records a month but no trusted, repeatable view of how long riders wait, or where. |
-| **User and decision** | TLC's policy team, once a month: *which boroughs and zones show persistently long waits and should be raised in reviews with the HV licensees, and are this month's numbers trustworthy enough to quote?* |
-| **Project KPI** | **Long-wait rate:** share of trips where request to pickup took over 10 minutes, citywide and by pickup borough |
-| **Data** | Real TLC HVFHV trip files for May, June and July 2026 (64M trips), the Taxi Zone Lookup, and TLC's own published aggregates through the NYC Open Data API |
-| **Output** | Gold metric tables per month, a validation report, a reconciliation against TLC's counts, a PUBLISH / WITH CAVEATS / HOLD decision, and the generated [evidence page](docs/evidence.md) |
+| **Problem** | Riders say app-based cars take too long to arrive, especially outside Manhattan. The city gets about 21 million trip records a month but has no trusted monthly view of waiting. |
+| **Who uses it** | The NYC Taxi and Limousine Commission (TLC) policy team, who raise service problems with Uber and Lyft. |
+| **KPI** | **Long-wait rate:** the share of trips where the rider waited more than 10 minutes between requesting the ride and being picked up. |
+| **Decision it supports** | Which boroughs and neighbourhoods to raise with Uber and Lyft this month, and whether this month's numbers are safe to quote. |
 
-## Headline evidence
+## <img src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/23f1.svg" width="24" alt=""> Results
 
-| Metric | 2026-05 | 2026-06 | 2026-07 |
-|---|---|---|---|
-| **Publish decision** | **PUBLISH** | **HOLD** (file 2.15% short of TLC's count) | **PUBLISH WITH CAVEATS** (TLC base report not out yet) |
-| M1 Long-wait rate (> 10 min), citywide | 9.7% | 12.0% (could be 11.8% to 14.0%) | 10.0% |
-| M1 sensitivity: > 5 min / > 15 min | 42.6% / 2.6% | 46.7% / 3.6% | 42.5% / 2.7% |
-| M2 Median / P90 wait (min) | 4.48 / 9.90 | 4.77 / 10.75 | 4.45 / 10.02 |
-| M3 Median driver arrival / boarding (min) | 3.50 / 0.68 | 3.78 / 0.65 | 3.43 / 0.68 |
-| M4 Long-wait rate: wheelchair-accessible (WAV) requested / standard | 27.2% / 9.7% | 32.0% / 12.0% | 28.3% / 10.0% |
-| M5 Trips usable for the KPI / file vs TLC published count | 98.7% / +0.01% | 98.7% / **-2.15%** | 98.8% / +0.01% |
+| Month | Long-wait rate | Can it be published? |
+|---|---|---|
+| May 2026 | 9.7% | ✅ **PUBLISH**: every check passed |
+| June 2026 | 12.0% (could be 11.8% to 14.0%) | ⛔ **HOLD**: the file is missing about 455,000 trips |
+| July 2026 | 10.0% | ⚠️ **PUBLISH WITH CAVEATS**: one TLC report is not out yet |
 
 ![Long-wait rate by borough and month](docs/img/long_wait_by_borough.png)
 
-What the output tells the policy team:
-- **Where to focus:** Staten Island (about 16 to 17%) and the Bronx (about 12 to 14%) have the highest long-wait rates every month, and Manhattan the lowest (7 to 10%). The zones behind them are listed in [evidence section 4](docs/evidence.md#4-zones-with-the-highest-long-wait-rate-in-every-month-at-least-5000-measured-trips).
-- **Accessible rides:** riders who ask for a wheelchair-accessible vehicle wait past 10 minutes about 2.7 to 2.8 times as often as other riders.
-- **Where the wait sits:** about 80% of the typical wait is the driver getting to the rider, so supply near the rider is the lever.
-- **June is not quotable yet.** The file is missing about 455K trips, most likely a week of Lyft records (June 8 to 14). The pipeline holds the month and bounds the KPI instead of publishing a biased number. See [decision D6](docs/decisions.md#d6-june-2026-is-on-hold-the-file-is-21-short-of-tlcs-own-count).
+- **Staten Island** has the longest waits every month (16% to 17%), then **the Bronx and Queens** (12% to 14%). Manhattan has the shortest.
+- Riders who ask for a **wheelchair-accessible** car wait over 10 minutes almost 3 times as often.
+- Most of the wait is the **driver getting to the rider**, so driver supply nearby is what matters.
 
-## How the class method maps to this repo
+All numbers and the top zones: [docs/evidence.md](docs/evidence.md).
 
-| Skill (class) | Where it lives | Evidence |
+## The key judgement call: holding June
+
+June's file downloaded perfectly, but TLC's own published count says it should hold about 455,000 more trips (2%). The most likely cause is a week of Lyft trips missing from the file (June 8 to 14):
+
+![Trips per day in the June 2026 file](docs/img/june_daily_trips.png)
+
+Publishing would quietly rest on missing data, and filling the gap would mean making data up. So the pipeline marks June **HOLD**, by a rule set before any month was checked, shows the range the rate could really be, and asks TLC to republish. Full reasoning: [decision D6](docs/decisions.md#d6-june-2026-is-on-hold-the-file-is-21-short-of-tlcs-own-count).
+
+## How it works
+
+```mermaid
+flowchart LR
+    A["TLC trip file<br/>(one per month)"] --> P
+    B["Zone lookup<br/>(265 areas)"] --> P
+    C["TLC's own trip counts<br/>(NYC Open Data API)"] --> P
+    P["run_pipeline.py<br/>download and check, validate,<br/>model, compare, measure"] --> O["Monthly tables<br/>+ PUBLISH / HOLD decision"]
+    O --> E["Evidence page<br/>docs/evidence.md"]
+```
+
+- **Every download is checked** (size, fingerprint, row count), and then compared with TLC's own counts.
+- **Bad trips are flagged, never deleted**, and left out only of the numbers they would distort.
+- **Safe to rerun:** the same month gives the same output, and a failure never overwrites good results.
+
+## Data sources
+
+| Source | How it is fetched | What it gives |
 |---|---|---|
-| Understand sources (4) | [docs/source_map.md](docs/source_map.md) | Questions to fields to sources, owner, grain, freshness, trust and gaps; system-of-record calls; owner questions |
-| Retrieve data (5) | [pipeline/extract.py](pipeline/extract.py) | Two modes: files over HTTPS (Parquet, CSV) and the REST API (Socrata, paged). Completeness proven by bytes vs Content-Length, SHA-256, Parquet footer rows, API `count(*)`. Raw inputs preserved with manifests |
-| Profile and validate (6) | [notebooks/01_profile_validate_model.ipynb](notebooks/01_profile_validate_model.ipynb), [pipeline/validate.py](pipeline/validate.py), [docs/validation_rules.md](docs/validation_rules.md) | 7 dataset checks, 10 trip rules as flags (quarantine, never fix), a KPI gate, results for three months |
-| Model the workflow (7) | [pipeline/model.py](pipeline/model.py), [pipeline/metrics.py](pipeline/metrics.py), [docs/data_model.md](docs/data_model.md), [docs/metrics.md](docs/metrics.md) | request, on scene, pickup, dropoff stages; `fact_trip` at trip grain; aggregate-before-join gold tables; 5 metrics tied to the KPI |
-| Dependable pipeline (8) | [run_pipeline.py](run_pipeline.py), [pipeline/runner.py](pipeline/runner.py), [pipeline/reconcile.py](pipeline/reconcile.py), [tests/](tests) | extract, validate, model, reconcile, metrics, publish; logging with run ids; idempotent reruns; retries; clear exit codes; chaos scenarios; 24 offline tests |
+| TLC trip records, one Parquet file a month | File download | Every Uber and Lyft trip: request, pickup and dropoff times, pickup zone |
+| TLC taxi zone lookup (CSV) | File download | Which borough each zone is in |
+| TLC published trip counts (NYC Open Data) | REST API | An independent total to prove the file is complete |
 
-## Stakeholders
-
-These are framed from TLC's public role, not from interviews. They are an assumption to confirm in discovery (Class 1 role types).
-
-| Role type | Who | What they know or care about |
-|---|---|---|
-| Outcome owner | TLC Office of Policy | Reliable service across all five boroughs; owns the KPI definition and target |
-| Users | TLC policy and research analysts | A monthly number they can defend in a licensee review |
-| Operator | Uber and Lyft NYC operations teams | Driver supply by area; how they are measured |
-| Data and system owner | TLC Data & Technology (publishes); licensees (submit the records) | Trip record accuracy, field meanings, republishing |
-| Upstream | Licensee dispatch systems that stamp request, on-scene and pickup times | Whether timestamps mean the same thing across companies |
-| Blocker or enabler | Accessibility advocates and TLC's WAV program; licensees disputing numbers | WAV service levels; a number that survives challenge |
-
-## Sources
-
-| Source | Mode | Grain | Role |
-|---|---|---|---|
-| `fhvhv_tripdata_YYYY-MM.parquet` (TLC CloudFront) | File over HTTPS | one completed trip | The facts |
-| `taxi_zone_lookup.csv` | File over HTTPS | one zone (265) | Zone to borough |
-| NYC Open Data `c5iv-bn4s` Pickups by Taxi Zone and Industry | REST API | month x zone x industry | Control total per zone |
-| NYC Open Data `2v9c-2k7f` FHV Base Aggregate Report | REST API | licensee x month | Control total per licensee (lags the trip files) |
-| DuckDB over the preserved raw files | SQL | as modelled | Validation, model and metrics |
-
-Full map: [docs/source_map.md](docs/source_map.md). Workflow and data model diagrams: [docs/data_model.md](docs/data_model.md).
+More: [source map](docs/source_map.md) and [data model](docs/data_model.md).
 
 ## Run it
 
-Needs Python 3.11 or newer (tested on 3.14) and about 2 GB of disk for three months of raw data.
+Needs Python 3.11+ and about 2 GB of disk.
 
 ```bash
 python -m venv .venv
-.venv/Scripts/activate            # Windows; on macOS/Linux: source .venv/bin/activate
+.venv/Scripts/activate            # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 
-python run_pipeline.py --from 2026-05 --to 2026-07   # download, verify, validate, model, reconcile, publish
-python run_pipeline.py                               # the latest month TLC should have published (today minus 2 months)
-python run_pipeline.py --month 2026-06 --chaos api_down   # watch one failure path
-python run_pipeline.py --report-only                 # rebuild docs/evidence.md from outputs/
-pytest                                               # 24 tests, offline, on a fixture of real rows
+python run_pipeline.py --from 2026-05 --to 2026-07   # run three months
+pytest                                               # 24 offline tests
 ```
 
-A fresh month downloads about 500 MB, then runs in about 30 seconds. Reruns reuse a local file only if its size, ETag and SHA-256 still match the remote.
+## What it produces
 
-| Path | What is there | In git |
-|---|---|---|
-| `data/raw/` | Bronze: the files exactly as retrieved, plus `_manifest.json` and every raw API page | no (size) |
-| `data/silver/month=YYYY-MM/fact_trip.parquet` | Silver: every trip with stage durations and validation flags | no (size) |
-| `outputs/month=YYYY-MM/` | Gold: `metrics_*.csv`, `validation_report.json`, `reconciliation*.{json,csv}`, `run_manifest.json` | yes |
-| `docs/evidence.md` | Generated evidence page | yes |
-| `logs/`, [`docs/run_logs/`](docs/run_logs) | One log per run id; copies of the real and chaos runs | copies only |
+| Output | Where |
+|---|---|
+| Metric tables for each month (citywide, borough, zone, wheelchair-accessible) | `outputs/month=YYYY-MM/metrics_*.csv` |
+| Validation and completeness reports | `validation_report.json`, `reconciliation.json` in the same folder |
+| The publish decision and a record of the run | `run_manifest.json` |
+| The final evidence table and chart | [docs/evidence.md](docs/evidence.md) |
 
-Monthly schedule (TLC publishes about two months after month end; a run before the file exists fails cleanly and is safe to repeat):
+## Known / Unknown / Assumptions / Limitations
 
-```bash
-# cron: 06:00 on the 20th of every month
-0 6 20 * * cd /path/to/repo && .venv/bin/python run_pipeline.py >> logs/cron.log 2>&1
-# Windows Task Scheduler
-schtasks /Create /SC MONTHLY /D 20 /ST 06:00 /TN TLCWaitPipeline /TR "cmd /c cd /d D:\path\to\repo && .venv\Scripts\python run_pipeline.py"
-```
+| | |
+|---|---|
+| **Known** | About 1 ride in 10 waits over 10 minutes. Staten Island is worst, then the Bronx and Queens. May and July match TLC's counts to within 0.01%. |
+| **Unknown** | Why June is short and whether TLC will republish it. How many riders gave up waiting. Why waits are long. |
+| **Assumptions** | "Long" means over 10 minutes (5 and 15 are shown too). The June HOLD limit (2%) was set in advance. Stakeholders are assumed, not interviewed. |
+| **Limitations** | Only completed trips are published, so this is a floor on rider pain. Locations are zones, not addresses. The data shows where waits are long, not why. |
 
-## Dependability
+## More detail
 
-| Scenario | What the pipeline does | Exit | Evidence |
-|---|---|---|---|
-| Normal month | Six stages; outputs staged, then swapped in atomically; run manifest with input checksums, row counts per stage, config fingerprint, git commit | 0 | [01_monthly_run_2026-06.log](docs/run_logs/01_monthly_run_2026-06.log) |
-| Same month rerun | Reuses the verified download; every output file reproduces the same SHA-256 (only the run id changes) | 0 | [06_rerun_2026-06.log](docs/run_logs/06_rerun_2026-06.log), `tests/test_pipeline.py` |
-| Required column disappears | Schema contract FAIL before any processing; previous outputs untouched | 2 | [02_chaos_missing_column.log](docs/run_logs/02_chaos_missing_column.log) |
-| Download cut off mid-file | Detected by byte count, retried 4 times with backoff, no partial file kept | 3 | [03_chaos_truncated_download.log](docs/run_logs/03_chaos_truncated_download.log) |
-| Reconciliation API down | Retries, then UNKNOWN; month completes as degraded, "with caveats" | 0 | [04_chaos_api_down.log](docs/run_logs/04_chaos_api_down.log) |
-| Month not published yet | Clear message naming the month and TLC's publication lag | 3 | [05_chaos_unpublished_month.log](docs/run_logs/05_chaos_unpublished_month.log) |
-| File short of TLC's own count | HOLD, with the range the KPI could take | 0 | June 2026, [run_manifest.json](outputs/month=2026-06/run_manifest.json) |
+- [docs/details.md](docs/details.md): class skill map, stakeholders, every run option, failure scenarios, the full Known / Unknown list
+- [docs/validation_rules.md](docs/validation_rules.md), [docs/metrics.md](docs/metrics.md), [docs/decisions.md](docs/decisions.md)
+- [notebooks/](notebooks/01_profile_validate_model.ipynb): the profiling notebook behind every rule
+- [Python Notebook Challenges/](Python%20Notebook%20Challenges): the solved Class 5 to 7 notebooks
 
-Exit codes: 0 success (including degraded), 1 unexpected error, 2 validation failed, 3 retrieval failed, 4 bad arguments. Retries are bounded (4 attempts, exponential backoff, `Retry-After` honoured) and only for 429, 5xx, timeouts and dropped connections. All thresholds live in [config/pipeline.toml](config/pipeline.toml).
-
-## Known / Unknown / Assumption / Limitation
-
-**Known**
-- About 1 in 10 app-based rides waits more than 10 minutes from request to pickup (9.7% in May, 10.0% in July). The median wait is about 4.5 minutes.
-- Staten Island and the Bronx have the highest long-wait rates every month; Manhattan has the lowest.
-- WAV-requested rides wait past 10 minutes about 2.7 to 2.8 times as often as standard rides.
-- The May and July files reconcile with TLC's published counts to within 0.01%; May matches per licensee exactly.
-- The June file holds 455,490 fewer trips than TLC reports, concentrated in Lyft trips on June 8 to 14.
-
-**Unknown**
-- Why June is short, and whether TLC will republish the file.
-- What `request_datetime` means for scheduled rides: 1.2% of trips are picked up before their request time.
-- How many riders gave up waiting. Unfulfilled requests are not published.
-- What Lyft's `trip_time` includes, and why the licensees stamp `on_scene_datetime` differently.
-- *Why* waits are long (supply, traffic, events). The data shows where and when, not the cause.
-
-**Assumptions** (all in config, all for the owner to confirm)
-- A long wait means over 10 minutes. 5 and 15 minutes are reported beside it.
-- A wait over 60 minutes is not an on-demand wait.
-- A plausible trip has positive miles, lasts under 4 hours and averages under 70 mph.
-- A licensee-day under 75% of its weekday median signals missing data.
-- Reconciliation passes within 0.5% and fails beyond 2%. These thresholds were set before any month was reconciled.
-- TLC's base report names licensees by brand (UBER, LYFT).
-- Stakeholders are framed, not interviewed.
-
-**Limitations**
-- Only completed trips are published, so the KPI is a floor on rider pain and WAV fulfilment cannot be measured.
-- Location is by taxi zone, not coordinates.
-- Airport pickups include walking to a designated area.
-- The arrival/boarding split cannot compare licensees.
-- Three months give no seasonal baseline, so June's rise cannot yet be separated from the data gap or from season.
-- Everything here is association, not causation.
-
-## Repo layout
-
-```
-run_pipeline.py            CLI: one month, a range, or the latest published month
-config/pipeline.toml       every URL, threshold and retry setting
-pipeline/                  extract, validate, model, reconcile, metrics, report, runner
-notebooks/                 executed profiling and modelling notebook (June 2026)
-tests/                     offline tests on a fixture of real rows
-outputs/month=YYYY-MM/     committed gold outputs and run manifests
-docs/                      source map, data model, rules, metrics, decisions, evidence, run logs
-DEMO_SCRIPT.md             3 to 5 minute walkthrough script
-```
+<sub>Icons: [Twemoji](https://github.com/jdecked/twemoji), CC-BY 4.0. Badges: [shields.io](https://shields.io).</sub>
