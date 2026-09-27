@@ -3,7 +3,7 @@
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-SQL-FFF000?logo=duckdb&logoColor=black)
 ![pandas](https://img.shields.io/badge/pandas-data-150458?logo=pandas&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-24%20passing-2ea44f?logo=pytest&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-26%20passing-2ea44f?logo=pytest&logoColor=white)
 [![Data: NYC TLC](https://img.shields.io/badge/data-NYC%20TLC%20trip%20records-FFD700)](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 [![API: NYC Open Data](https://img.shields.io/badge/API-NYC%20Open%20Data-0A66C2)](https://data.cityofnewyork.us/)
 
@@ -77,7 +77,7 @@ python -m venv .venv
 pip install -r requirements.txt
 
 python run_pipeline.py --from 2026-05 --to 2026-07   # run three months
-pytest                                               # 24 offline tests
+pytest                                               # 26 offline tests
 ```
 
 ## What it produces

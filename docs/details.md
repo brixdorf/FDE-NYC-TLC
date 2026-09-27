@@ -10,7 +10,7 @@ Everything the short [README](../README.md) leaves out: how each class skill map
 | Retrieve data (5) | [pipeline/extract.py](../pipeline/extract.py) | Two modes: files over HTTPS (Parquet, CSV) and the REST API (Socrata, paged). Completeness proven by bytes vs Content-Length, SHA-256, Parquet footer rows, API `count(*)`. Raw inputs preserved with manifests |
 | Profile and validate (6) | [notebooks/01_profile_validate_model.ipynb](../notebooks/01_profile_validate_model.ipynb), [pipeline/validate.py](../pipeline/validate.py), [validation_rules.md](validation_rules.md) | 7 dataset checks, 10 trip rules as flags (quarantine, never fix), a KPI gate, results for three months |
 | Model the workflow (7) | [pipeline/model.py](../pipeline/model.py), [pipeline/metrics.py](../pipeline/metrics.py), [data_model.md](data_model.md), [metrics.md](metrics.md) | request, on scene, pickup, dropoff stages; `fact_trip` at trip grain; aggregate-before-join gold tables; 5 metrics tied to the KPI |
-| Dependable pipeline (8) | [run_pipeline.py](../run_pipeline.py), [pipeline/runner.py](../pipeline/runner.py), [pipeline/reconcile.py](../pipeline/reconcile.py), [tests/](../tests) | extract, validate, model, reconcile, metrics, publish; logging with run ids; idempotent reruns; retries; clear exit codes; chaos scenarios; 24 offline tests |
+| Dependable pipeline (8) | [run_pipeline.py](../run_pipeline.py), [pipeline/runner.py](../pipeline/runner.py), [pipeline/reconcile.py](../pipeline/reconcile.py), [tests/](../tests) | extract, validate, model, reconcile, metrics, publish; logging with run ids; idempotent reruns; retries; clear exit codes; chaos scenarios; 26 offline tests |
 | Class challenges (5 to 7) | [Python Notebook Challenges/](../Python%20Notebook%20Challenges) | The FlashEats in-class notebooks, solved and run |
 
 ## Stakeholders
@@ -47,7 +47,7 @@ python run_pipeline.py --from 2026-05 --to 2026-07   # download, verify, validat
 python run_pipeline.py                               # the latest month TLC should have published (today minus 2 months)
 python run_pipeline.py --month 2026-06 --chaos api_down   # watch one failure path
 python run_pipeline.py --report-only                 # rebuild docs/evidence.md from outputs/
-pytest                                               # 24 tests, offline, on a fixture of real rows
+pytest                                               # 26 tests, offline, on a fixture of real rows
 ```
 
 A fresh month downloads about 500 MB, then runs in about 30 seconds. Reruns reuse a local file only if its size, ETag and SHA-256 still match the remote.

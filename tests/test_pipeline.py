@@ -6,6 +6,7 @@ import logging
 
 import pytest
 
+import run_pipeline
 from pipeline import runner
 from pipeline.extract import RetrievalError
 from pipeline.validate import ValidationError
@@ -57,3 +58,8 @@ def test_failed_run_leaves_previous_outputs_untouched(cfg, session, chaos, error
         _run(cfg, FakeSession(), "run-bad", chaos=chaos)
     assert {p.name: p.read_bytes() for p in out.iterdir()} == before
     assert good
+
+
+@pytest.mark.parametrize("argv", [["--to", "2026-06"], ["--from", "2026-07", "--to", "2026-05"]])
+def test_month_range_that_selects_nothing_is_rejected(argv):
+    assert run_pipeline.main(argv) == run_pipeline.EXIT_ARGS

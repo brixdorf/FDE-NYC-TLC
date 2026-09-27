@@ -69,6 +69,10 @@ def main(argv: list[str] | None = None) -> int:
             parser.print_usage(sys.stderr)
             print(f"error: {value!r} is not a month in YYYY-MM form", file=sys.stderr)
             return EXIT_ARGS
+    if args.to_month and (not args.from_month or args.to_month < args.from_month):
+        parser.print_usage(sys.stderr)
+        print("error: --to needs a --from month that is not after it", file=sys.stderr)
+        return EXIT_ARGS
     months = resolve_months(args, cfg["project"]["publication_lag_months"])
 
     run_id = new_run_id()
