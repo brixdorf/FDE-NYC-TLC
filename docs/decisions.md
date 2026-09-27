@@ -1,6 +1,6 @@
 # Decisions log
 
-The judgement calls behind the pipeline, each with the evidence, the options and the reason. D6 is the one covered in depth in the demo ([DEMO_SCRIPT.md](../DEMO_SCRIPT.md)).
+The judgement calls behind the pipeline, each with the evidence, the options and the reason. D6 is the one covered in depth in the demo.
 
 ## D1. Build on High Volume FHV trips, not Yellow taxi
 
